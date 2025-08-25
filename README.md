@@ -49,3 +49,24 @@ Scenario: Successful login with valid credentials
 After the test run, a report will be generated at:
 
 target/cucumber-report.html
+
+
+
+
+## 🔁 CI/CD Integration
+
+This project is integrated with **GitHub Actions** to run tests automatically on every push and pull request.
+
+### ✅ Workflow: `.github/workflows/ci.yml`
+```yaml
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+      - run: mvn clean test
+
